@@ -85,3 +85,53 @@ git remote -v
 # Push your changes
 git push origin master
 '''
+# notatka ze stacka (dobra notatka)
+'''
+(Note: starting Oct. 2020, any new repository is created with the default branch main, not master. And you can rename existing repository default branch from master to main.
+The rest of this 2014 answer has been updated to use "main")
+
+If the GitHub repo has seen new commits pushed to it, while you were working locally, I would advise using:
+
+git pull --rebase
+git push
+
+The full syntax is:
+
+git pull --rebase origin main
+git push origin main
+
+With Git 2.6+ (Sept. 2015), after having done (once)
+
+git config --global pull.rebase true
+git config --global rebase.autoStash true
+
+A simple git pull would be enough.
+(Note: with Git 2.27 Q2 2020, a merge.autostash is also available for your regular pull, without rebase)
+
+That way, you would replay (the --rebase part) your local commits on top of the newly updated origin/main (or origin/yourBranch: git pull origin yourBranch).
+
+See a more complete example in the chapter 6 Pull with rebase of the Git Pocket Book.
+
+I would recommend a:
+
+# add and commit first
+git push -u origin main
+
+That would establish a tracking relationship between your local main branch and its upstream branch.
+After that, any future push for that branch can be done with a simple:
+
+git push
+
+See "Why do I need to explicitly push a new branch?".
+
+Since the OP already reset and redone its commit on top of origin/main:
+
+git reset --mixed origin/main
+git add .
+git commit -m "This is a new commit for what I originally planned to be amended"
+git push origin main
+
+There is no need to pull --rebase.
+
+Note: git reset --mixed origin/main can also be written git reset origin/main, since the --mixed option is the default one when using git reset.
+'''
