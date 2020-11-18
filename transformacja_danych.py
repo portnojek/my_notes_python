@@ -104,6 +104,37 @@ for element in range( 4400 )
 if (element % 2 == 0 )
 )'''
 
+import sys
+
+evenNumbers = [element
+              for element in range(400)
+              if (element % 2 ==0)
+              ]
+
+print(evenNumbers)
+
+evenNumbersGenerator = (element
+                        for element in range(400)
+                        if (element % 2 == 0)
+                        )
+
+evenNumbersGenerator2 = (element 
+                        for element in range (101)
+                        )
+
+print(evenNumbersGenerator)
+print(sys.getsizeof(evenNumbers))
+print(sys.getsizeof(evenNumbersGenerator)) # generator zabiera dużo mniej miejsca
+print(sum(evenNumbersGenerator))
+print(evenNumbersGenerator2)
+print((sum(evenNumbersGenerator2)**2)**2)
+
+
+for item in evenNumbersGenerator2:
+    print(item)
+
+
+
 #fourth_example_WYRAZENIA_SLOWNIKOWE
 '''Wyrażenie słownikowe czyli formuły, wyrażenia które pozwalają przemienić np. zbiory,
 słowniki czy też listy - w słownik.
